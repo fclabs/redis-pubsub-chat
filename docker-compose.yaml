@@ -1,0 +1,13 @@
+services:
+  app:
+    image: app
+    build: .
+    environment:
+      REDIS_HOST: redis   # service name
+    ports:
+      - "8501:8501"
+
+  redis: # service name references in REDIS_HOST
+    image: redis
+    ports:
+      - "6379:6379"

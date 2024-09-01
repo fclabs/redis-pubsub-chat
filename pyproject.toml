@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "redis-pubsub-chat"
+version = "0.1.0"
+description = ""
+authors = ["Federico Castañeda <fedecasta@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+streamlit = "^1.38.0"
+watchdog = "^4.0"
+redis = "^5.0.8"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
