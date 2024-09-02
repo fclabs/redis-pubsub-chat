@@ -22,7 +22,7 @@ class UserConversation:
         self.topic: Optional[str] = None
         self.messages: List[ChatMessage] = []
         self.pubsub = None
-        self.redis_client = Redis(os.getenv("REDIS_URL", "localhost"))
+        self.redis_client = Redis(os.getenv("REDIS_HOST", "localhost"))
 
     def publish_message(self, content: str) -> None:
         if self.topic:
@@ -45,16 +45,3 @@ class UserConversation:
             print(f"Received: chat_item: ", chat_item)
             if chat_item['user'] != self.username:
                 self.messages.append(chat_item)
-
-    def update_chat_container(self, container):
-        container.write(f"Username: {self.username}")
-
-        # Draw chat messages for this topic
-        for chat_item in cu.messages:
-            with st.chat_message(name=chat_item["user"]):
-                st.write(chat_item["message"])
-
-        prompt = st.chat_input(key=f"message_{i}")
-        if prompt is not None:
-            cu.publish_message(content=prompt)
-            st.rerun()
